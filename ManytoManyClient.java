@@ -59,26 +59,28 @@ System.out.println("list size="+empList.size());
 		empList.forEach(e -> System.out.println(e));*/
 
 		// Insert into skill table
-		 Skill skill1=new Skill();
-		 skill1.setName("Java");
-		 session.save(skill1);
-		Skill  skill2=new Skill();
-	skill2.setName("Hibernate");
-		 session.save(skill2);
-		 Skill skill3=new Skill();
-		 skill3.setName("Spring");
-		 session.save(skill3);
- 
+//Skill skill1=new Skill();
+//		 skill1.setName("Java");
+//		 session.save(skill1);
+//		Skill  skill2=new Skill();
+//	skill2.setName("Hibernate");
+//		 session.save(skill2);
+//		 Skill skill3=new Skill();
+//		 skill3.setName("Spring");
+//		 session.save(skill3);
+		//   session.getTransaction().commit();
 		// Employee - skill (many - many)
 		Set<Skill> skillSet = new HashSet<>();
 		Employee e = session.get(Employee.class, 2);
-		skillSet.add(skill1);
-   	skillSet.add(skill2);
-	skillSet.add(skill3);
+		Skill s1=session.get(Skill.class, 1);
+		skillSet.add(s1);
+		Skill s2=session.get(Skill.class, 2);
+		skillSet.add(s2);
+  
 		e.setSkillList(skillSet);
 		session.save(e);
 		
-		   session.getTransaction().commit();
+	   session.getTransaction().commit();
 	/*	Employee emp = empService.get(2);
 		System.out.println(emp.getName());
 		Set<Skill> skills = emp.getSkillList();
